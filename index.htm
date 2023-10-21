@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Converter</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Base Converter</h1>
+    <div id="main-box">
+        <form autocomplete="off">
+            <div id="base-form">
+                <div class="base-choice">
+                    <div class="base-box alpha-base">
+                        <label>From base</label>
+                        <input id="alpha-base-value" type="text" pattern="^[0-9]+$" min="2" max="100" value="10" oninput="handleInput(this, 2)" onpaste="handlePaste(event, this, 2)">
+                    </div>
+                    <img src="Index/switch.png" id="switch" alt="Switch">
+                    <div class="base-box beta-base">
+                        <label>To base</label>
+                        <input id="beta-base-value" type="text" pattern="^[0-9]+$" min="2" max="100" value="16" oninput="handleInput(this, 2)" onpaste="handlePaste(event, this, 2)">
+                    </div>
+                </div>
+            </div>
+            <div id="value-form">
+                <div class="value-choice">
+                    <div class="base-box alpha-base">
+                        <label for="alpha-base">Input</label>
+                        <input id="input" type="text" pattern="^[0-9A-Za-z]+$" min="0" max="1000000000" value="0" oninput="handleInput(this, 1)" onpaste="handlePaste(event, this, 1)">
+                    </div>
+                    <div class="base-box beta-base">
+                        <label for="beta-base">Output</label>
+                        <div id="output">0</div>
+                    </div>
+                </div>
+                <button id="convert">Convert</button>
+            </div>
+        </form>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
