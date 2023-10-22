@@ -1,14 +1,20 @@
 
+const tipsButton = document.getElementById("tips");
+const mainBox = document.getElementById("main-box");
 const alphaBaseValue = document.getElementById("alpha-base-value");
 const betaBaseValue = document.getElementById("beta-base-value");
 const inputValue = document.getElementById("input");
 const output = document.getElementById("output");
+const switchButton = document.getElementById("switch");
 
 const savedAlphaBase = localStorage.getItem("alphaBase");
 const savedBetaBase = localStorage.getItem("betaBase");
 
 const alphanumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const digits = "0123456789";
+
+let isFlipped = false;
+
 
 if (savedAlphaBase) {
     alphaBaseValue.value = savedAlphaBase;
@@ -17,6 +23,12 @@ if (savedAlphaBase) {
 if (savedBetaBase) {
     betaBaseValue.value = savedBetaBase;
 }
+
+setTimeout( () => {
+
+    tipsButton.style.animation = "excitement 1.4s ease";
+
+}, 500);
 
 document.getElementById("switch").addEventListener("click", (event) => {
     
@@ -31,19 +43,6 @@ document.getElementById("switch").addEventListener("click", (event) => {
     inputValue.value = output.innerHTML;
     output.innerHTML = temp;
 
-    localStorage.setItem("alphaBase", alphaBaseValue.value);
-    localStorage.setItem("betaBase", betaBaseValue.value);
-
-});
-
-document.getElementById("convert").addEventListener("click", (event) => {
-    
-    event.preventDefault();
-
-    conversionResult = conversion(alphaBaseValue.value, betaBaseValue.value, inputValue.value.toString());
-    if (conversionResult === "") { output.innerHTML = "0"; } 
-    else { output.innerHTML = conversionResult; }
-
 });
 
 document.addEventListener("keydown", (event) => {
@@ -51,6 +50,13 @@ document.addEventListener("keydown", (event) => {
     if (event.keyCode === 13) { event.preventDefault(); document.getElementById("convert").click(); }
     
 });
+
+function saveBases() {
+
+    localStorage.setItem("alphaBase", alphaBaseValue.value);
+    localStorage.setItem("betaBase", betaBaseValue.value);
+
+}
 
 function conversion(alphaBase, betaBase, nAlphaBase) {
     let nDecimalBase = 0;
@@ -129,6 +135,10 @@ function handleInput (element, allowedChars) {
         element.setSelectionRange(startPosition, endPosition);
     }
 
+    conversionResult = conversion(alphaBaseValue.value, betaBaseValue.value, inputValue.value.toString());
+    if (conversionResult === "") { output.innerHTML = "0"; } 
+    else { output.innerHTML = conversionResult; }
+
 }
 
 function handlePaste (event, element, allowedChars) {
@@ -172,4 +182,72 @@ function handlePaste (event, element, allowedChars) {
 
     }
 
+    conversionResult = conversion(alphaBaseValue.value, betaBaseValue.value, inputValue.value.toString());
+    if (conversionResult === "") { output.innerHTML = "0"; } 
+    else { output.innerHTML = conversionResult; }
+
 }
+
+document.addEventListener('keydown', function(event) {
+
+    if (event.ctrlKey && event.key === ":") {
+
+        inputValue.focus();
+        inputValue.setSelectionRange(inputValue.value.length, inputValue.value.length);
+
+    }
+    
+    else if (event.ctrlKey && event.key === ",") {
+
+        alphaBaseValue.focus();
+        alphaBaseValue.setSelectionRange(alphaBaseValue.value.length, alphaBaseValue.value.length);
+
+    }
+
+    else if (event.ctrlKey && event.key === ";") {
+
+        betaBaseValue.focus();
+        betaBaseValue.setSelectionRange(betaBaseValue.value.length, betaBaseValue.value.length);
+
+    }
+
+    else if (event.ctrlKey && event.key === "!") {
+
+        switchButton.click();
+
+
+    }
+
+});
+
+tipsButton.addEventListener("click", () => {
+
+    time = 200;
+
+    if (isFlipped === false) {
+        
+        mainBox.classList.add("flipped");
+        document.getElementById("front-face").style.display = "none";
+        setTimeout( () => {
+        
+            document.getElementById("back-face").style.display = "flex";
+            tipsButton.classList.add("replacement");
+        
+        }, time);
+        isFlipped = true;
+        
+    } else {
+        
+        mainBox.classList.remove("flipped");
+        tipsButton.classList.remove("replacement");
+        document.getElementById("back-face").style.display = "none";
+        setTimeout( () => {
+
+            document.getElementById("front-face").style.display = "flex";
+        
+        }, time);
+        isFlipped = false;
+
+    }
+
+});
