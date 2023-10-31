@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="expires" content="86400"/>
+    <title>Base Converter - Emilien Marotta</title>
+    <meta name="author" content="Emilien Marotta" email="emilien.marotta@gmail.com">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Emilien Marotta - Maths and computer science student">
+    <link rel="icon" href="../Index/logo.png">
+    <link rel="stylesheet" href="baseConverter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+</head>
+<body>
+    <div class="angle" id="angle1">
+        <div class="horizontal-rectangle"></div>
+        <div class="vertical-rectangle"></div>
+    </div>
+    <div class="angle" id="angle2">
+        <div class="vertical-rectangle"></div>
+        <div class="horizontal-rectangle"></div>
+    </div>
+    <h1 id="h1"></h1>
+    <div id="main-box" class="main-box">
+        <img src="Index/tips.png" id="tips" class="tips" title="Shortcuts">
+        <form autocomplete="off" id="front-face" class="face front">
+            <div id="base-form">
+                <div class="base-choice">
+                    <div class="base-box alpha-base">
+                        <label>From base</label>
+                        <input id="alpha-base-value" class="input-rectangle" type="text" pattern="^[0-9]+$" min="2" max="36" value="10" oninput="handleInput(this, 2), saveBases()" onpaste="handlePaste(event, this, 2), saveBases()">
+                    </div>
+                    <img src="Index/switch.png" id="switch" alt="Switch">
+                    <div class="base-box beta-base">
+                        <label>To base</label>
+                        <input id="beta-base-value" class="input-rectangle" type="text" pattern="^[0-9]+$" min="2" max="36" value="16" oninput="handleInput(this, 2), saveBases()" onpaste="handlePaste(event, this, 2), saveBases()">
+                    </div>
+                </div>
+            </div>
+            <div id="value-form">
+                <div class="value-choice">
+                    <div class="base-box alpha-base">
+                        <label for="alpha-base">Input</label>
+                        <input id="input" type="text" class="input-rectangle" pattern="^[0-9A-Za-z]+$" min="0" max="1000000000" value="0" oninput="handleInput(this, 1)" onpaste="handlePaste(event, this, 1)">
+                    </div>
+                    <div class="base-box beta-base">
+                        <label for="beta-base">Output</label>
+                        <div id="output" class="input-rectangle">0</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="back-face" class="face back">
+            <h2>Shortcuts :</h2>
+            <ul>
+                <li>Select "From base" : <span class="shortcuts">Ctrl + ,</span></li>
+                <li>Select "To base" : <span class="shortcuts">Ctrl + ;</span></li>
+                <li>Select "Input" : <span class="shortcuts">Ctrl + :</span></li>
+                <li>Switch bases : <span class="shortcuts">Ctrl + !</span></li>
+                <li>Display/Hide tips : <span class="green shortcuts">Ctrl + ù</span></li>
+            </ul>
+        </div>
+    </div>
+    <div data-aos="fade-up" id="info-github">You can find the project's source code at this <a href="https://github.com/emilienmarotta/Base_Converter">GitHub address</a>.</div>
+    <footer>
+        <div id="social-media">
+            <a href="https://instagram.com/emilienmarotta/" title="Instagram" class="social-media-link"><img src="../Index/instagram.png" id="instagram" alt="Instagram"></a>
+            <a href="https://linkedin.com/in/emilienmarotta/" title="LinkedIn" class="social-media-link"><img src="../Index/linkedin.png" id="linkedin" alt="Instagram"></a>
+            <a href="https://github.com/emilienmarotta/" title="GitHub" class="social-media-link"><img src="../Index/github.png" id="github" alt="GitHub"></a>
+        </div>
+        <div id="copyright">
+            Copyright © 2023 Emilien Marotta. All rights reserved, unless otherwise indicated.
+        </div>
+    </footer>
+    <div id="up-button">
+        <div id="up-button-img">
+            <img src="../Index/arrow.png" id="arrow"/>
+            <img src="../Index/arrow2.png" id="arrow2"/>
+        </div>
+    </div>
+    <script src="baseConverter.js"></script>
+</body>
+</html>
